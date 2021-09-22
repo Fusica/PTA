@@ -3,49 +3,48 @@
  * @Time: 9/19/21 19:18
  */
 
-#include <iostream>
-#include <cstring>
+
 #include <cstdio>
 using namespace std;
 
 int num[12],solve[12],d[12],ans[12];
 char str[12][25];
-bool vis[12];
-int h,n,t0,minn,minTim;
+bool visted[12];
+int h,n,tread,q,minTime;  //minq暂时的解题数，tread为读题时间，minTime为用于比较的最短解题时间
 
-void Dfs(int cnt,int rTime,int tim)
+void Dfs(int tn,int ttime,int time)  //ttime为按照规则计算的总耗时(加上惩罚时间)
 {
-    if(tim > h) return;  //tim为读题时间，h为题目限时
-    if(cnt > minn|| (cnt == minn && rTime<minTim))  //minTim为暂时的最优解
+    if(time > h) return;  //如果答题时间超时，返回
+    if(tn > q || (tn == q && ttime<minTime))  //minTim为暂时的最优解
     {
-        minn = cnt;
-        minTim = rTime;
-        for(int i=0;i<cnt;++i)
+        q = tn;
+        minTime = ttime;
+        for(int i=0;i<tn;i++)
             ans[i] = num[i];
     }
-    if(cnt >= n) return;
+    if(tn >= n) return;
     for(int i=0;i<n;++i)
-        if(!vis[i])
+        if(!visted[i])
         {
-            vis[i] = true;
-            num[cnt] = i;
-            Dfs(cnt+1,rTime+tim+solve[i]+(tim+solve[i]-1)/60*(d[i]+20),tim+solve[i]+(tim+solve[i]-1)/60*d[i]);
-            vis[i] = false;
+            visted[i] = true;
+            num[tn] = i;
+            Dfs(tn+1,ttime+time+solve[i]+(time+solve[i]-5)/60*(d[i]+20),time+solve[i]+(time+solve[i]-5)/60*d[i]);
+            visted[i] = false;
         }
 }
 
 int main()
 {
-    while(scanf("%d",&h)&&h>=0)  //这里一定是h>=0因为题目中说的小于0终止，不一定是-1,
+    while(scanf("%d",&h)&&h>=0)  //负数为输入的终止条件
     {
-        scanf("%d%d",&n,&t0);
-        minn = 0;
-        h = h * 60;  //转化成分钟
+        scanf("%d%d",&n,&tread);
+        q = 0;
+        h = h * 60;  //将hour转化成min
         for(int i=0;i<n;++i)
             scanf("%s%d%d",str[i],&solve[i],&d[i]);
-        Dfs(0,0,t0);
-        printf("Total Time = %d\n",minTim);
-        for(int i=0;i<minn;++i)
+        Dfs(0,0,tread);
+        printf("Total Time = %d\n",minTime);
+        for(int i=0;i<q;++i)
             printf("%s\n",str[ans[i]]);
 
     }
