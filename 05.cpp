@@ -4,8 +4,7 @@
  */
 
 #include <iostream>
-#include <string>
-#include <string.h>
+#include <cstring>
 #include <algorithm>
 
 using namespace std;
