@@ -9,4 +9,6 @@ add_executable(BestBinaryTree "Class Example/BestBinaryTree.cpp")
 add_executable(MutilTask "Class Example/MutilTask.c")
 add_executable(Fill 03.c)
 add_executable(Moonpie 05.cpp)
+
+add_executable(08 08.cpp)
 add_executable(test test.cpp)
