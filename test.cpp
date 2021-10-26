@@ -3,18 +3,31 @@
  * @Time: 10/26/21 17:34
  */
 
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <cstdio>
+#include<iostream>
+#include<string>
+#include<vector>
 
-using namespace std;
+using std::cout; using std::cin;
+using std::endl; using std::string;
+using std::vector;
+
+//template<typename T>
+//void printVector(std::vector<T> v) {
+//    for (const auto &item : v) {
+//        cout << item << "; ";
+//    }
+//    cout << endl;
+//}
 
 int main() {
-    string main_str;
-    getline(cin, main_str);
-    int a=0;
-    printf("%c", main_str[9]);
+    vector<string> str_arr1;
+    str_arr1.push_back("string");
+    cout <<  * str_arr1.begin();
+
+//    printVector(str_arr1);
+//    str_arr1.emplace_back("Palm Cove");
+//    printVector(str_arr1);
+
 
     return 0;
 }

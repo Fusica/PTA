@@ -12,3 +12,4 @@ add_executable(Moonpie 05.cpp)
 
 add_executable(08 08.cpp)
 add_executable(test test.cpp)
+add_executable(09 09.cpp)
